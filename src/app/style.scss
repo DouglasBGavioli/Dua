@@ -349,7 +349,12 @@
 
         &-form {
             display: flex;
+            flex-direction: column;
             gap: 2rem;
+
+            @media (min-width: 992px) {
+                flex-direction: row;
+            }
 
             &-inputs {
                 display: flex;
@@ -381,6 +386,7 @@
                 display: block;
                 width: 100%;
                 min-width: 230px;
+                max-width: 300px;
                 height: 225px;
                 padding: 6px 12px;
                 font-size: 14px;
@@ -396,6 +402,10 @@
                 -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
                 transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
                 resize: none;
+
+                @media (min-width: 992px) {
+                    min-width: 230px;
+                }
             }
         }
 

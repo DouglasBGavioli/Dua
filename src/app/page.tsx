@@ -105,7 +105,6 @@ export default function Home() {
             <p>Para mais informações, acesse o site do DFPC: <a href="//www.dfpc.eb.mil.br" rel="noopener noreferrer" target={"_blank"}>www.dfpc.eb.mil.br</a></p>
           </div>
         </div>
-        <span>Fortis et adaptabilis, urutu est exemplar virtutis</span>
       </div>
 
       <div className="dua-home__contact">
