@@ -105,7 +105,12 @@
             max-width: 1366px;
 
             img {
+                display: flex;
                 border-radius: 100%;
+
+                @media(max-width:650px) {
+                    display: none;
+                }
             }
 
             &-content {
@@ -115,10 +120,25 @@
 
                 p {
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
                     color: #7e7e7e;
                     font-weight: 500;
                     line-height: 25px;
+
+                    img {
+                        display: none;
+                    }
+
+                    @media(max-width:650px) {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 2rem;
+
+                        img {
+                            display: flex;
+                        }
+                    }
                 }
             }
         }
@@ -177,6 +197,22 @@
                 align-items: center;
             }
 
+            &-imgMob {
+                display: none;
+
+                @media(max-width:650px) {
+                    display: flex;
+                }
+            }
+
+            &-imgDesk {
+                display: flex;
+
+                @media(max-width:650px) {
+                    display: none;
+                }
+            }
+
             &-text {
                 display: flex;
                 flex-direction: column;
@@ -232,6 +268,13 @@
         &-topicsReverse {
             flex-direction: row-reverse;
 
+            @media(max-width:650px) {
+                img {
+                    width: 75px;
+                    height: 75px;
+                }
+            }
+
             &-text {
                 padding-left: 0 !important;
                 margin: 0 !important;
@@ -281,7 +324,12 @@
             max-width: 1366px;
 
             img {
+                display: flex;
                 border-radius: 100%;
+
+                @media(max-width:650px) {
+                    display: none;
+                }
             }
 
             &-content {
@@ -290,14 +338,25 @@
                 flex-direction: column;
 
                 p {
+                    display: flex;
+                    flex-direction: row;
                     color: #7e7e7e;
                     font-weight: 500;
                     line-height: 25px;
 
-                    a {
-                        text-decoration: none;
-                        color: #0e3804;
-                        font-weight: 500;
+                    img {
+                        display: none;
+                    }
+
+                    @media(max-width:650px) {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 2rem;
+
+                        img {
+                            display: flex;
+                        }
                     }
                 }
             }

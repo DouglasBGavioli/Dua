@@ -25,7 +25,9 @@ export default function Home() {
         <div className="dua-home__about-description">
           <Image src={"/assets/logo.png"} alt="Logo dua" width={100} height={100} />
           <div className="dua-home__about-description-content">
-            <p>Divisão Urutu Airsoft, equipe fundada em setembro de 2016, para prática de Airsoft.</p>
+            <p>
+              <Image src={"/assets/logo.png"} alt="Logo dua" width={100} height={100} />
+              Divisão Urutu Airsoft, equipe fundada em setembro de 2016, para prática de Airsoft.</p>
             <p>
               Utilizando como base simulações de ações militares o(Milsim), a Divisão Urutu Airsoft conta hoje com 18 jogadores. Seguindo os passos dos pioneiros do esporte levando sempre para campo os valores de : honra, respeito, disciplina e amizade.</p>
           </div>
@@ -41,6 +43,7 @@ export default function Home() {
           <span>Divisão Urutu Airsoft</span>
         </div>
         <div className="dua-home__honor-topics">
+          <Image className="dua-home__honor-topics-imgMob" src={"/assets/safe.png"} alt="Safe" width={75} height={75} />
           <div className="dua-home__honor-topics-text">
             <h2>Conduta em campo</h2>
             <p>Minimizando risco de acidentes</p>
@@ -51,7 +54,7 @@ export default function Home() {
               <li>Considerar uso de equipamentos diversos, capacete, coturno e joelheira.</li>
             </ul>
           </div>
-          <Image src={"/assets/safe.png"} alt="Safe" width={135} height={135} />
+          <Image className="dua-home__honor-topics-imgDesk" src={"/assets/safe.png"} alt="Safe" width={135} height={135} />
         </div>
 
         <div className="dua-home__honor-topicsReverse">
@@ -65,6 +68,7 @@ export default function Home() {
         </div>
 
         <div className="dua-home__honor-topics">
+          <Image className="dua-home__honor-topics-imgMob" src={"/assets/honra.png"} alt="Honor" width={75} height={75} />
           <div className="dua-home__honor-topics-text">
             <h2>JOGUE COM HONRA</h2>
             <p>O Airsoft necessita de um sistema de honra para registrar as eliminações, porém, devido a diversos fatores externos, como equipamentos e ambiente, é inviável garantir um registro completamente eficaz.</p>
@@ -75,7 +79,7 @@ export default function Home() {
               <li>Se alguém não está admitindo ser atingido ou está agindo com desonestidade, é importante informar ao comando de maneira tranquila e discreta. Na equipe, esse comportamento não é aceitável e o comando irá avaliar cuidadosamente cada caso para evitar acusações falsas ou situações desconfortáveis.</li>
             </ul>
           </div>
-          <Image src={"/assets/honra.png"} alt="Safe" width={135} height={135} />
+          <Image className="dua-home__honor-topics-imgDesk" src={"/assets/honra.png"} alt="Safe" width={135} height={135} />
         </div>
 
         <div className="dua-home__honor-topicsReverse">
@@ -97,9 +101,11 @@ export default function Home() {
           <h3>Exército Brasileiro</h3>
         </div>
         <div className="dua-home__laws-description">
-          <Image src={"/assets/logo.png"} alt="Logo dua" width={100} height={100} />
+          <Image src={"/assets/balanca.png"} alt="Logo dua" width={100} height={100} />
           <div className="dua-home__laws-description-content">
-            <p>As regras para a aquisição e a importação de armas de pressão para airsoft no Brasil estão definidas na Portaria Nº 02 COLOG de 26 de fevereiro de 2010, que regulamenta o art. 26 da Lei 10.826/03 sobre réplicas, simulacros de armas de fogo e armas de pressão.</p>
+            <p>
+              <Image src={"/assets/balanca.png"} alt="Logo dua" width={80} height={80} />
+              As regras para a aquisição e a importação de armas de pressão para airsoft no Brasil estão definidas na Portaria Nº 02 COLOG de 26 de fevereiro de 2010, que regulamenta o art. 26 da Lei 10.826/03 sobre réplicas, simulacros de armas de fogo e armas de pressão.</p>
             <p>
               Artigo 26 da Lei 10.826/03 - São vedadas a fabricação, a venda, a comercialização e a importação de brinquedos, réplicas e simulacros de armas de fogo, que com estas possam confundir. Parágrafo único - Excetuam-se da proibição as réplicas e os simulacros destinados à instrução, ao adestramento, ou à coleção de usuário autorizado, nas condições fixadas pelo Comando do Exército.</p>
             <p>Para mais informações, acesse o site do DFPC: <a href="//www.dfpc.eb.mil.br" rel="noopener noreferrer" target={"_blank"}>www.dfpc.eb.mil.br</a></p>
