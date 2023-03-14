@@ -1,0 +1,35 @@
+@use "../../globalStyle/mixins" as *;
+@use "../../globalStyle/variables" as *;
+
+.ic-loader {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  position: fixed;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  &.loading {
+    display: flex;
+  }
+
+  &__container {
+    border: .5rem solid colors(greenUrutuOne);
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

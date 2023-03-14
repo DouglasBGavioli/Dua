@@ -4,16 +4,19 @@ import "./style.min.css"
 import { storage, app } from "../../config/firebaseClient"
 import { getDownloadURL, listAll, ref, StorageReference } from "firebase/storage"
 import ImageCard from "../../components/ImageCard";
+import { useLoader } from "../../contexts";
 
 interface Image {
     url: string;
 }
 export default function History() {
     const [images, setImages] = useState<Image[]>([]);
+    const { handleLoader } = useLoader();
 
     const getImages = useCallback(async () => {
+        handleLoader(true)
         try {
-            const storageRef: StorageReference = ref(storage);
+            const storageRef: StorageReference = ref(storage, "images");
             const res = await listAll(storageRef);
             const urls = await Promise.all(res.items.map(async (itemRef) => {
                 try {
@@ -28,6 +31,8 @@ export default function History() {
             setImages(filteredUrls);
         } catch (error) {
             console.log(error);
+        } finally {
+            handleLoader(false)
         }
     }, []);
 

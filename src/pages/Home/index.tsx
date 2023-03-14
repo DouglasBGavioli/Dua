@@ -31,7 +31,7 @@ export default function Home() {
                             <img src={"/logo.png"} alt="Logo dua" />
                             Divisão Urutu Airsoft, equipe fundada em setembro de 2016, para prática de Airsoft.</p>
                         <p>
-                            Utilizando como base simulações de ações militares o(Milsim), a Divisão Urutu Airsoft conta hoje com 18 jogadores. Seguindo os passos dos pioneiros do esporte levando sempre para campo os valores de : honra, respeito, disciplina e amizade.</p>
+                            Utilizando como base simulações de ações militares o (Milsim), a Divisão Urutu Airsoft conta hoje com 18 jogadores. Seguindo os passos dos pioneiros do esporte levando sempre para campo os valores de: honra, respeito, disciplina e amizade.</p>
                     </div>
                 </div>
                 <span>Fortis et adaptabilis, urutu est exemplar virtutis</span>
@@ -110,7 +110,7 @@ export default function Home() {
                             As regras para a aquisição e a importação de armas de pressão para airsoft no Brasil estão definidas na Portaria Nº 02 COLOG de 26 de fevereiro de 2010, que regulamenta o art. 26 da Lei 10.826/03 sobre réplicas, simulacros de armas de fogo e armas de pressão.</p>
                         <p>
                             Artigo 26 da Lei 10.826/03 - São vedadas a fabricação, a venda, a comercialização e a importação de brinquedos, réplicas e simulacros de armas de fogo, que com estas possam confundir. Parágrafo único - Excetuam-se da proibição as réplicas e os simulacros destinados à instrução, ao adestramento, ou à coleção de usuário autorizado, nas condições fixadas pelo Comando do Exército.</p>
-                        <p>Para mais informações, acesse o site do DFPC: <a href="//www.dfpc.eb.mil.br" rel="noopener noreferrer" target={"_blank"}>www.dfpc.eb.mil.br</a></p>
+                        <p>Para mais informações, acesse o site do DFPC: <a href="//www.dfpc.eb.mil.br" rel="noopener noreferrer" target={"_blank"}> www.dfpc.eb.mil.br</a></p>
                     </div>
                 </div>
             </div>

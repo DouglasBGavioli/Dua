@@ -1,0 +1,36 @@
+$colors: (
+  greenOne: #0e3804,
+  backGround1:#eeeded,
+  greenUrutuOne:#72815E,
+  greenUrutuTwo:#2C3B17,
+);
+
+$grayscale: (
+  grayOne: #7e7e7e,
+
+);
+
+$status: (
+  success-300: #00552a,
+  success-200: #28a745,
+  success-100: #d4edda,
+  attention-300: #804600,
+  attention-200: #e39402,
+  attention-100: #ffe5cd,
+  error-300: #870c25,
+  error-250: #960000,
+  error-200: #b50000,
+  error-100: #f8d7da,
+);
+
+@function map-collect($lists...) {
+  $collection: ();
+
+  @each $list in $lists {
+    $collection: map-merge($collection, $list);
+  }
+
+  @return $collection;
+}
+
+$colors: map-collect($colors, $grayscale, $status);

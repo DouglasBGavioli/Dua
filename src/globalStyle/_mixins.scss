@@ -1,0 +1,61 @@
+@use "../globalStyle/variables" as *;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+@function pxToRem($value) {
+  @return $value / 16 * 1rem;
+}
+
+@function colors($value) {
+  $color: map-get($colors, $value);
+
+  @return $color;
+}
+
+@mixin title($weight, $size) {
+  $weights: (regular: 400,
+    semibold: 500,
+    bold: 600,
+    extrabold: 700,
+  );
+
+  $sizes: (40, 36, 32, 28, 24);
+  $lines: (60, 54, 48, 42, 36);
+
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: map-get($weights, $weight);
+  font-size: pxToRem(nth($sizes, index($sizes, $size)));
+  line-height: pxToRem(nth($lines, index($sizes, $size)));
+}
+
+@mixin paragraph($weight, $size, $underline: false) {
+  $weights: (regular: 400,
+    semibold: 500,
+    bold: 600,
+    extrabold: 700,
+  );
+
+  $sizes: (20, 18, 16, 14, 12, 10);
+  $lines: (30, 27, 24, 21, 18, 15);
+
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: map-get($weights, $weight);
+  font-size: pxToRem(nth($sizes, index($sizes, $size)));
+  line-height: pxToRem(nth($lines, index($sizes, $size)));
+  text-decoration: if($underline ==true, underline, none);
+}
+
+@mixin hero($weight, $size) {
+  $weights: (regular: 400,
+    semibold: 500,
+    bold: 600,
+    extrabold: 700,
+  );
+
+  $sizes: (44, 46);
+  $lines: (52, 60);
+
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: map-get($weights, $weight);
+  font-size: pxToRem(nth($sizes, index($sizes, $size)));
+  line-height: pxToRem(nth($lines, index($sizes, $size)));
+}
