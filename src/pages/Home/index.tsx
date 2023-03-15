@@ -1,8 +1,67 @@
-import { useRef } from "react";
+import { ChangeEvent, useCallback, useRef, useState } from "react";
 import "./style.min.css"
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../config/firebaseClient"
+import { useLoader } from "../../contexts";
+import { Alert } from "../../components/Alert";
+
+interface FormData {
+    email: string,
+    mensagem: string,
+    nome: string,
+    telefone: string,
+    tempoPratica: string
+}
+
+const INITIAL_DATA = {
+    email: "",
+    mensagem: "",
+    nome: "",
+    telefone: "",
+    tempoPratica: ""
+} as FormData
 
 export default function Home() {
     const sectionRef = useRef<HTMLDivElement>(null);
+    const { handleLoader } = useLoader()
+
+    const [data, setData] = useState(INITIAL_DATA)
+    const [alert, setAlert] = useState("")
+    const [alertMessage, setAlertMessage] = useState("")
+
+    const handleData = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        setData({ ...data, [e.target.name]: e.target.value });
+    }, [data]);
+
+    const dataValidation = useCallback(() => {
+        const values = Object.values(data);
+        return !values.some((value) => value === undefined || value === null || value === "");
+    }, [data])
+
+    const sendData = useCallback(async () => {
+        handleLoader(true)
+        try {
+            const docRef = await addDoc(collection(db, "contatos"), {
+                ...data
+            });
+            setData(INITIAL_DATA)
+            setAlert("success")
+            setAlertMessage("Seu formulário foi enviado com sucesso!")
+            setTimeout(() => {
+                setAlert("")
+            }, 2000);
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+            setAlert("error")
+            setAlertMessage("Erro ao enviar seu formulário!")
+            setTimeout(() => {
+                setAlert("")
+            }, 2000);
+        } finally {
+            handleLoader(false)
+        }
+    }, [data, alert])
 
     const scrollToSection = () => {
         sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -29,7 +88,7 @@ export default function Home() {
                     <div className="dua-home__about-description-content">
                         <p>
                             <img src={"/logo.png"} alt="Logo dua" />
-                            Divisão Urutu Airsoft, equipe fundada em setembro de 2016, para prática de Airsoft.</p>
+                            Divisão Urutu Airsoft, equipe fundada em setembro de 2016 na cidade de Canela-Rs, para prática de Airsoft.</p>
                         <p>
                             Utilizando como base simulações de ações militares o (Milsim), a Divisão Urutu Airsoft conta hoje com 18 jogadores. Seguindo os passos dos pioneiros do esporte levando sempre para campo os valores de: honra, respeito, disciplina e amizade.</p>
                     </div>
@@ -114,8 +173,15 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
             <div className="dua-home__contact">
+                {alert === "success" ?
+                    (
+                        <Alert variant={"success"} type="inline">{alertMessage}</Alert>
+                    )
+                    : alert === "error" &&
+                    (
+                        <Alert variant={"error"} type="inline">{alertMessage}</Alert>
+                    )}
                 <div className="dua-home__contact-title">
                     <h2>Contato para jogos</h2>
                     <h3>Se interessou pela equipe e gostaria de participar de um jogo aberto a convidados?</h3>
@@ -123,16 +189,16 @@ export default function Home() {
                 </div>
                 <div className="dua-home__contact-form">
                     <div className="dua-home__contact-form-inputs">
-                        <input type={"text"} placeholder="Digite seu nome*" />
-                        <input type={"email"} placeholder="Digite seu e-mail*" />
-                        <input type={"tel"} placeholder="Digite seu telefone*" />
-                        <input type={"text"} placeholder="A quanto tempo pratica o esporte*" />
+                        <input type={"text"} name="nome" value={data.nome} placeholder="Digite seu nome*" onChange={handleData} />
+                        <input type={"email"} name="email" value={data.email} placeholder="Digite seu e-mail*" onChange={handleData} />
+                        <input type={"tel"} name="telefone" value={data.telefone} placeholder="Digite seu telefone*" onChange={handleData} />
+                        <input type={"text"} name="tempoPratica" value={data.tempoPratica} placeholder="A quanto tempo pratica o esporte*" onChange={handleData} />
                     </div>
                     <div>
-                        <textarea className="dua-home__contact-form-textArea" placeholder="Deixe alguma mensagem*" />
+                        <textarea name="mensagem" value={data.mensagem} className="dua-home__contact-form-textArea" placeholder="Deixe alguma mensagem*" onChange={e => setData({ ...data, mensagem: e.target.value })} />
                     </div>
                 </div>
-                <button className="button">Enviar</button>
+                <button type="button" disabled={!dataValidation() as unknown as boolean} className="button" onClick={sendData}>Enviar</button>
             </div>
         </div>
     )

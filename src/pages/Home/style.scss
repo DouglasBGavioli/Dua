@@ -19,11 +19,18 @@
         pointer-events: auto;
         cursor: pointer;
         text-decoration: none;
+        transition: 0.3s ease-in-out;
 
         &:hover {
             transition: 0.3s ease-in-out;
             background-color: rgb(44, 59, 23);
             color: #fff
+        }
+
+        &:disabled {
+            transition: 0.3s ease-in-out;
+            cursor: not-allowed;
+            background-color: #686767;
         }
     }
 
@@ -111,7 +118,6 @@
 
             img {
                 display: flex;
-                border-radius: 100%;
                 width: 100px;
                 height: 100px;
 

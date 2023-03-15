@@ -1,0 +1,148 @@
+@use "../../globalStyle/mixins" as *;
+@use "../../globalStyle/variables" as *;
+
+$variants: (
+  success: (background: colors(backGround2),
+    border: colors(greenOne),
+    color: colors(greenUrutuTwo), 31101 shadow: rgba(49, 113, 89, 0.16),
+  ),
+  info: (background: colors(primary-100),
+    border: colors(primary-400),
+    color: colors(primary-600),
+    shadow: rgba(31, 61, 153, 0.16),
+  ),
+  warning: (background:colors(attention-100),
+    border: colors(attention-200),
+    color: colors(attention-300),
+    shadow: rgba(102, 70, 13, 0.16),
+  ),
+  error: (background: colors(error-100),
+    border: colors(error-200),
+    color: colors(error-200),
+    shadow: rgba(125, 40, 40, 0.16),
+  ),
+);
+
+.ic-alert {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  max-width: 500px;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  gap: 1rem;
+  border: 1px solid;
+  z-index: 10;
+
+
+  &__texts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+
+    &__title {
+      @include paragraph(semibold, 14);
+      flex-direction: row;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        span {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    &__description {
+      p {
+        @include paragraph(regular, 14);
+        color: colors(gray-500);
+      }
+    }
+  }
+
+  @each $key,
+  $value in $variants {
+    $background: map-get($value, background);
+    $border: map-get($value, border);
+    $color: map-get($value, color);
+    $shadow: map-get($value, shadow);
+
+    &.#{$key} {
+      background-color: $background;
+      border-color: $border;
+
+      &.inline {
+
+
+        border: none;
+
+        .ic-alert__icon {
+          display: flex;
+          align-items: center;
+
+
+          svg {
+            path {
+              fill: $color;
+            }
+          }
+        }
+
+        .ic-alert__texts {
+          &__description {
+            display: flex;
+            justify-content: center;
+          }
+        }
+      }
+
+      &.toast {
+        position: fixed;
+        box-shadow: 0 4px 8px 0px $shadow;
+
+        .ic-alert__texts {
+          &__title {
+            button {
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+            }
+
+            svg {
+              path {
+                fill: $color;
+              }
+            }
+          }
+
+          &__description {
+            p {
+              @include paragraph(semibold, 14);
+              color: $color;
+            }
+          }
+        }
+
+        .ic-alert__icon {
+          display: flex;
+          align-items: center;
+
+          svg {
+            path {
+              fill: $color;
+            }
+          }
+        }
+      }
+
+      .ic-alert__texts {
+        &__title {
+          color: $color;
+        }
+      }
+    }
+  }
+}
