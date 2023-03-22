@@ -1,44 +1,35 @@
 import { useCallback, useEffect, useState } from "react"
 import "./style.min.css"
 
-import { storage, app } from "../../config/firebaseClient"
+import { storage, db } from "../../config/firebaseClient"
 import { getDownloadURL, listAll, ref, StorageReference } from "firebase/storage"
 import ImageCard from "../../components/ImageCard";
-import { useLoader } from "../../contexts";
+import { useLoader, useMidias } from "../../contexts";
 
-interface Image {
-    url: string;
+
+interface Gallery {
+    id: string,
+    data: string,
+    description: string,
+    url: string[]
 }
-export default function History() {
-    const [images, setImages] = useState<Image[]>([]);
-    const { handleLoader } = useLoader();
 
-    const getImages = useCallback(async () => {
-        handleLoader(true)
-        try {
-            const storageRef: StorageReference = ref(storage, "images");
-            const res = await listAll(storageRef);
-            const urls = await Promise.all(res.items.map(async (itemRef) => {
-                try {
-                    const url = await getDownloadURL(itemRef);
-                    return { url };
-                } catch (error) {
-                    console.log(error);
-                    return null;
-                }
-            }));
-            const filteredUrls = urls.filter(url => url !== null) as Image[];
-            setImages(filteredUrls);
-        } catch (error) {
-            console.log(error);
-        } finally {
-            handleLoader(false)
-        }
-    }, []);
+export default function History() {
+    const { getMidias, setCollections, gallery, collections } = useMidias()
+    const { handleLoader } = useLoader();
+    const [arrGallery, setArrGallery] = useState<Gallery[]>()
 
     useEffect(() => {
-        getImages();
-    }, [getImages]);
+        setCollections("images")
+        getMidias()
+        const myGallery: Gallery | null = gallery; // exemplo de valor que pode ser nulo
+        if (myGallery) {
+            const myArray = Object.values(myGallery);
+            setArrGallery(myArray);
+        }
+    }, [gallery, getMidias, setCollections]);
+
+
 
     return (
         <div className="dua-history">
@@ -46,8 +37,8 @@ export default function History() {
                 <h1>Nossa história</h1>
             </div>
             <div className="dua-history__image">
-                {images.map((image, index) => (
-                    <ImageCard url={image.url} data="23/11/22" evento="Lumberjack" key={index} />
+                {arrGallery?.map((item, index) => (
+                    <ImageCard url={item.url?.[1]} data={item.data} evento={item.description} key={index} />
                 ))}
             </div>
         </div>

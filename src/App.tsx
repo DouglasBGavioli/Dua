@@ -12,17 +12,19 @@ import Manutencao from "./pages/Manutencao";
 function App() {
   return (
     <BrowserRouter>
-      <C.LoaderProvider>
-        <Header />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path={"/history"} element={<History />} />
-          <Route path={"/integrantes"} element={<Integrantes />} />
-          <Route path={"/acervo"} element={<Acervo />} />
-          <Route path={"/manutencao"} element={<Manutencao />} />
-        </Routes>
-        <Footer />
-      </C.LoaderProvider>
+      <C.MidiasProvider>
+        <C.LoaderProvider>
+          <Header />
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path={"/history"} element={<History />} />
+            <Route path={"/integrantes"} element={<Integrantes />} />
+            <Route path={"/acervo"} element={<Acervo />} />
+            <Route path={"/manutencao"} element={<Manutencao />} />
+          </Routes>
+          <Footer />
+        </C.LoaderProvider>
+      </C.MidiasProvider>
     </BrowserRouter>
   );
 }
