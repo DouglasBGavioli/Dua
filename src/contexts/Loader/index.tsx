@@ -29,8 +29,8 @@ export function LoaderProvider(props: LoaderProviderProps) {
 
   return (
     <LoaderContext.Provider value={{ handleLoader }}>
-      <div className={`ic-loader  ${isLoad ? "loading" : ""}`}>
-        <div className="ic-loader__container" />
+      <div className={`dua-loader  ${isLoad ? "loading" : ""}`}>
+        <div className="dua-loader__container" />
       </div>
       {props.children}
     </LoaderContext.Provider>

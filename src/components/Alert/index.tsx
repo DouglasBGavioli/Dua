@@ -10,13 +10,10 @@ type AlertProps = {
 
 export function Alert({ children, variant = "info", type = "toast" }: AlertProps) {
   return (
-    <div className={`ic-alert ${variant} ${type ? type : ""}`}>
-      <div className="ic-alert__icon">
-        {/* <SvgIcon icon={variant} /> */}
-      </div>
-      <div className="ic-alert__texts">
+    <div className={`dua-alert ${variant} ${type ? type : ""}`}>
+      <div className="dua-alert__texts">
         {children && (
-          <div className="ic-alert__texts__description">
+          <div className="dua-alert__texts__description">
             <p>{children}</p>
           </div>
         )}

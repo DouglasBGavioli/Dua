@@ -23,7 +23,7 @@ $variants: (
   ),
 );
 
-.ic-alert {
+.dua-alert {
   display: flex;
   width: 100%;
   align-items: center;
@@ -79,7 +79,7 @@ $variants: (
 
         border: none;
 
-        .ic-alert__icon {
+        .dua-alert__icon {
           display: flex;
           align-items: center;
 
@@ -91,7 +91,7 @@ $variants: (
           }
         }
 
-        .ic-alert__texts {
+        .dua-alert__texts {
           &__description {
             display: flex;
             justify-content: center;
@@ -103,7 +103,7 @@ $variants: (
         position: fixed;
         box-shadow: 0 4px 8px 0px $shadow;
 
-        .ic-alert__texts {
+        .dua-alert__texts {
           &__title {
             button {
               background-color: transparent;
@@ -126,7 +126,7 @@ $variants: (
           }
         }
 
-        .ic-alert__icon {
+        .dua-alert__icon {
           display: flex;
           align-items: center;
 
@@ -138,7 +138,7 @@ $variants: (
         }
       }
 
-      .ic-alert__texts {
+      .dua-alert__texts {
         &__title {
           color: $color;
         }

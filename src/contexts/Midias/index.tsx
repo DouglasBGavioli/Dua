@@ -15,7 +15,7 @@ type MidiasContextProvider = {
     getMidias: () => Promise<void>,
     collections: string,
     setCollections: (collection: string) => void
-    gallery: Gallery | null
+    gallery: Gallery[] | null
 }
 
 type MidiasProviderProps = {
@@ -27,14 +27,14 @@ export const useMidias = () => useContext(MidiasContext);
 
 export const MidiasProvider = (props: MidiasProviderProps) => {
     const { handleLoader } = useLoader()
-    const [gallery, setGallery] = useState<Gallery | null>(null);
+    const [gallery, setGallery] = useState<Gallery[] | null>([]);
     const [collections, setCollections] = useState('');
 
     const getMidias = useCallback(async () => {
         const querySnapshot = await getDocs(collection(db, "images"));
         const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as unknown as Gallery
-        setGallery(data)
-    }, [collections]);
+        setGallery([data])
+    }, []);
 
     return (
         <MidiasContext.Provider value={{
