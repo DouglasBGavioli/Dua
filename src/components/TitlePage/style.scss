@@ -1,0 +1,27 @@
+@use "../../globalStyle/mixins" as *;
+@use "../../globalStyle/variables" as *;
+
+.dua-titlepage {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  gap: 0.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid colors(gray-200);
+
+  &__title {
+    @include title(semibold, 28);
+    color: colors(gray-500);
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    @include paragraph(semibold, 14);
+    color: colors(gray-480);
+    text-transform: uppercase;
+
+    @media (min-width: 992px) {
+      @include paragraph(semibold, 18);
+    }
+  }
+}

@@ -33,7 +33,9 @@ export const MidiasProvider = (props: MidiasProviderProps) => {
     const getMidias = useCallback(async () => {
         const querySnapshot = await getDocs(collection(db, "images"));
         const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as unknown as Gallery
-        setGallery([data])
+        console.log(data);
+
+        setGallery(Object.values(data))
     }, []);
 
     return (
