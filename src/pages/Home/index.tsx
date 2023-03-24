@@ -73,7 +73,7 @@ export default function Home() {
                 <div className="dua-home__banner__infos">
                     <h1>D.U.A</h1>
                     <h2>Força e Honra</h2>
-                    <button onClick={scrollToSection} className="button">SAIBA MAIS</button>
+                    <button onClick={scrollToSection} className="buttonHome">SAIBA MAIS</button>
                 </div>
 
             </div>
@@ -198,7 +198,7 @@ export default function Home() {
                         <textarea name="mensagem" value={data.mensagem} className="dua-home__contact-form-textArea" placeholder="Deixe alguma mensagem*" onChange={e => setData({ ...data, mensagem: e.target.value })} />
                     </div>
                 </div>
-                <button type="button" disabled={!dataValidation() as unknown as boolean} className="button" onClick={sendData}>Enviar</button>
+                <button type="button" disabled={!dataValidation() as unknown as boolean} className="buttonHome" onClick={sendData}>Enviar</button>
             </div>
         </div>
     )
