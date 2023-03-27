@@ -1,11 +1,12 @@
 
 import { useEffect, useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import "./style.min.css"
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const location = useLocation()
+    const navigate = useNavigate()
 
     useEffect(() => {
         setIsMenuOpen(false)
@@ -14,7 +15,7 @@ export default function Header() {
     return (
         <div className={`dua-header  ${isMenuOpen ? "active" : ""}`}>
             <div className="dua-header__content">
-                <div className="dua-header__content__logo">
+                <div className="dua-header__content__logo" onClick={() => navigate("/")}>
                     <img src={"/logo.png"} alt="Logo dua" />
                     <h1>D.U.A</h1>
                 </div>
