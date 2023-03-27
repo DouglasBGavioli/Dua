@@ -1,3 +1,5 @@
+import { format, parseISO } from "date-fns"
+import { ptBR } from "date-fns/locale"
 import "./style.min.css"
 
 type ImageCardProps = {
@@ -15,7 +17,7 @@ export default function ImageCard(props: ImageCardProps) {
             </div>
             <div className="dua-imageCard__description">
                 <h2>Evento: {props.evento}</h2>
-                <p>Data: {props.data}</p>
+                <p>Data: {format(parseISO(props.data!), "EEEE', 'dd' de 'MMMM 'de' Y", { locale: ptBR })}</p>
             </div>
         </div>
     )

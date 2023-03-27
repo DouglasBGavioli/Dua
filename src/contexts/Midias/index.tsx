@@ -1,8 +1,6 @@
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, getDocs } from "firebase/firestore";
 import { createContext, ReactNode, useCallback, useContext, useState } from "react";
-import { storage, db } from "../../config/firebaseClient";
-import { useLoader } from "../Loader";
+import { db } from "../../config/firebaseClient";
 
 interface Gallery {
     id: string,
@@ -26,15 +24,12 @@ export const MidiasContext = createContext({} as MidiasContextProvider);
 export const useMidias = () => useContext(MidiasContext);
 
 export const MidiasProvider = (props: MidiasProviderProps) => {
-    const { handleLoader } = useLoader()
     const [gallery, setGallery] = useState<Gallery[] | null>([]);
     const [collections, setCollections] = useState('');
 
     const getMidias = useCallback(async () => {
         const querySnapshot = await getDocs(collection(db, "images"));
         const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as unknown as Gallery
-        console.log(data);
-
         setGallery(Object.values(data))
     }, []);
 
