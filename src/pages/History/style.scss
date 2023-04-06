@@ -1,3 +1,6 @@
+@use "../../globalStyle/mixins" as *;
+@use "../../globalStyle/variables" as *;
+
 .dua-history {
     display: flex;
     flex-direction: column;
@@ -5,6 +8,11 @@
     max-width: 100%;
     min-height: 90vh;
     padding: 2rem;
+    gap: 1rem;
+
+    h2 {
+        @include paragraph(regular, 18)
+    }
 
     &__image {
         display: grid;

@@ -43,6 +43,7 @@ export default function History() {
     return (
         <div className="dua-history">
             <TitlePage title="Nossa história" subtitle="Galeria de jogos" />
+            <h2>Um pouco da nossa história contada através de galerias</h2>
             <div className="dua-history__image">
                 {gallery?.map((item, index) => (
                     <ImageCard url={item.url?.[0]} data={item.data} evento={item.description} key={index} onClick={() => handleModal(item)} />
