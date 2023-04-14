@@ -38,9 +38,9 @@ export default function Header() {
                         <ul>
                             <li><Link to={"/"}>Home</Link></li>
                             <li><Link to={"/history"}>História</Link></li>
-                            <li><Link to={"/"}>Regras</Link></li>
-                            <li><Link to={"/"}>Leis</Link></li>
-                            <li><Link to={"/"}>Contato</Link></li>
+                            <li><Link to={"/integrantes"}>Integrantes</Link></li>
+                            <li><Link to={"/acervo"}>Acervo</Link></li>
+                            <li><Link to={"/manutencao"}>Manutenção</Link></li>
                         </ul>
                     </nav>
                 </div>
