@@ -1,0 +1,13 @@
+@use "../../globalStyle/mixins" as *;
+@use "../../globalStyle/variables" as *;
+
+
+.dua-loja {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 100%;
+    min-height: 90vh;
+    padding: 2rem;
+    gap: 1rem;
+}

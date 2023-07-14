@@ -1,30 +1,35 @@
 import { useCallback, useEffect, useState } from "react"
 import "./style.min.css"
 import ImageCard from "../../components/ImageCard";
-import { useLoader, useMidias } from "../../contexts";
+import { useLoader, useMidias, useStore } from "../../contexts";
 import { Modal } from "../../components/Modal";
 import { TitlePage } from "../../components/TitlePage";
+import AnnouncementCard from "../../components/AnnouncementCard";
 
 
-interface Gallery {
+interface Store {
     id: string,
-    data: string,
-    description: string,
+    value?: string,
+    contact: number,
+    text: string,
     url: string[]
 }
 
-export default function History() {
-    const { getMidias, gallery } = useMidias()
+export default function Loja() {
+    const { getStore, store } = useStore()
 
-    const [modalGallery, setModalGallery] = useState<Gallery>()
+    const [modalGallery, setModalGallery] = useState<Store>()
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [galleryPosition, setGalleryPosition] = useState(1)
 
     useEffect(() => {
-        getMidias()
-    }, [getMidias]);
+        getStore()
+    }, [getStore]);
 
-    const handleModal = useCallback((item: Gallery) => {
+    console.log(store);
+
+
+    const handleModal = useCallback((item: Store) => {
         setModalGallery(item)
         setIsModalOpen(true)
     }, [])
@@ -41,11 +46,10 @@ export default function History() {
 
     return (
         <div className="dua-history">
-            <TitlePage title="Nossa história" subtitle="Galeria de jogos" />
-            <h2>Um pouco da nossa história contada através de galerias</h2>
+            <TitlePage title="Nossa loja" subtitle="Bem vindos a loja da Divisão Urutu" />
             <div className="dua-history__image">
-                {gallery?.map((item, index) => (
-                    <ImageCard url={item.url?.[0]} data={item.data} evento={item.description} key={index} onClick={() => handleModal(item)} />
+                {store?.map((item, index) => (
+                    <AnnouncementCard url={item.url?.[0]} value={item.value} item={item.text} key={index} onClick={() => handleModal(item)} contact={item.contact} />
                 ))}
             </div>
             <Modal isOpen={isModalOpen} className="dua-history__modal" onRequestClose={() => setIsModalOpen(false)}>
