@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import "./style.min.css"
-import ImageCard from "../../components/ImageCard";
-import { useLoader, useMidias, useStore } from "../../contexts";
+import { useStore } from "../../contexts";
 import { Modal } from "../../components/Modal";
 import { TitlePage } from "../../components/TitlePage";
 import AnnouncementCard from "../../components/AnnouncementCard";
