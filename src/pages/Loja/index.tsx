@@ -25,9 +25,6 @@ export default function Loja() {
         getStore()
     }, [getStore]);
 
-    console.log(store);
-
-
     const handleModal = useCallback((item: Store) => {
         setModalGallery(item)
         setIsModalOpen(true)
