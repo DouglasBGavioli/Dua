@@ -16,17 +16,14 @@ export default function ImageCard(props: AnnouncementCardProps) {
         });
     }
     return (
-        <div className="dua-announcement">
-            <div className="dua-announcement-card">
-                <span>{props.item}</span>
-                <img src={props.url} alt="Anúncio" />
-                {(props.value || props.contact) && (
-                    <>
-                        <p>{formatCurrency(Number(props.value))} <br />Tel: {props.contact}</p>
-                    </>
-                )}
-
-            </div>
+        <div className="dua-announcement-card">
+            <span>{props.item}</span>
+            <img src={props.url} alt="Anúncio" />
+            {(props.value || props.contact) && (
+                <>
+                    <p>{formatCurrency(Number(props.value))} <br />Tel: {props.contact}</p>
+                </>
+            )}
         </div>
     )
 }
