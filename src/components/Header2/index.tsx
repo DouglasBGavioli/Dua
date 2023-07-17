@@ -44,13 +44,13 @@ export default function Header() {
                             <li><Link to={"/galery"}>Galerias</Link></li>
                             <li><Link to={"/integrantes"}>Integrantes</Link></li>
                             <li><Link to={"/loja"}>Loja</Link></li>
-                            <li>
+                            {/* <li>
                                 <button onClick={(e) => handleDrop(e)}>Outros</button>
                                 <div className={`dua-header__content__links-others ${otherOpen ? "active" : ""}`}>
                                     <li><Link to={"/acervo"}>Acervo</Link></li>
                                     <li><Link to={"/manutencoes"}>Manutenções</Link></li>
                                 </div>
-                            </li>
+                            </li> */}
                         </ul>
                     </nav>
                 </div>
@@ -65,8 +65,8 @@ export default function Header() {
                             <li><Link to={"/galery"}>Galerias</Link></li>
                             <li><Link to={"/integrantes"}>Integrantes</Link></li>
                             <li><Link to={"/loja"}>Loja</Link></li>
-                            <li><Link to={"/acervo"}>Acervo</Link></li>
-                            <li><Link to={"/manutencoes"}>Manutenções</Link></li>
+                            {/* <li><Link to={"/acervo"}>Acervo</Link></li>
+                            <li><Link to={"/manutencoes"}>Manutenções</Link></li> */}
                         </ul>
 
                     </nav>

@@ -67,6 +67,21 @@ export default function Home() {
         sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
+    function formatPhoneNumber(phoneNumber: string): string {
+        // Remove todos os caracteres não numéricos do número de telefone
+        const cleanedNumber = phoneNumber.replace(/\D/g, '');
+
+        // Formata o número no formato desejado (exemplo: (055) 99993-3697)
+        const formattedNumber = cleanedNumber.replace(/(\d{3})(\d{5})(\d{4})/, '($1) $2-$3');
+
+        return formattedNumber;
+    }
+    const handleContactChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const formattedNumber = formatPhoneNumber(event.target.value);
+        setData({ ...data, "telefone": formattedNumber });
+    };
+
+
     return (
         <div className="dua-home">
             <div className="dua-home__banner" >
@@ -191,7 +206,13 @@ export default function Home() {
                     <div className="dua-home__contact-form-inputs">
                         <input type={"text"} name="nome" value={data.nome} placeholder="Digite seu nome*" onChange={handleData} />
                         <input type={"email"} name="email" value={data.email} placeholder="Digite seu e-mail*" onChange={handleData} />
-                        <input type={"tel"} name="telefone" value={data.telefone} placeholder="Digite seu telefone*" onChange={handleData} />
+                        <input
+                            type="tel"
+                            required
+                            value={data.telefone}
+                            placeholder="(055) 99999-9999"
+                            onChange={handleContactChange}
+                        />
                         <input type={"text"} name="tempoPratica" value={data.tempoPratica} placeholder="A quanto tempo pratica o esporte*" onChange={handleData} />
                     </div>
                     <div>
