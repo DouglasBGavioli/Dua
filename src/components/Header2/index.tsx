@@ -33,7 +33,7 @@ export default function Header() {
     return (
         <div className={`dua-header  ${isMenuOpen ? "active" : ""}`}>
             <div className="dua-header__content">
-                <div className="dua-header__content__logo" onClick={() => navigate("/home")}>
+                <div className="dua-header__content__logo" onClick={() => navigate("/")}>
                     <img src={"/logo.png"} alt="Logo dua" />
                     <h1>D.U.A</h1>
                 </div>

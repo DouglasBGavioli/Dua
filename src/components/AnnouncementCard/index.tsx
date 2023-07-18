@@ -15,13 +15,20 @@ export default function ImageCard(props: AnnouncementCardProps) {
             currency: 'BRL',
         });
     }
+    const regex = /\D/g;
     return (
         <div className="dua-announcement-card">
             <span>{props.item}</span>
             <img src={props.url} alt="Anúncio" />
             {(props.value || props.contact) && (
                 <>
-                    <p>{formatCurrency(Number(props.value))} <br />Tel: {props.contact}</p>
+                    <p>
+                        {formatCurrency(Number(props.value))}
+                        <br />Tel: {props.contact}
+                        <a aria-label="Chat on WhatsApp" target="_blank" href={`https://wa.me//55${props.contact.toString().replace(regex, "")}?text=Olá tenho interesse no seu produto anunciado no site da Divisão Urutu`} rel="noreferrer">
+                            <img alt="Chat on WhatsApp" src="whatsapp_icon.png" />
+                        </a>
+                    </p>
                 </>
             )}
         </div>
