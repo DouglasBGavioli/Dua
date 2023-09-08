@@ -5,8 +5,11 @@
 .dua-members {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    padding: 1rem 2rem;
+    justify-content: flex-start;
+    max-width: 100%;
+    min-height: 90vh;
+    padding: 2rem;
+    gap: 1rem;
 
     &__cards {
         display: grid;
