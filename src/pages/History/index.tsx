@@ -27,7 +27,10 @@ export default function History() {
     const handleModal = useCallback((item: Gallery) => {
         setModalGallery(item)
         setIsModalOpen(true)
-    }, [])
+        if (!isModalOpen) {
+            setGalleryPosition(1)
+        }
+    }, [isModalOpen])
 
     const changeImage = useCallback((e: 'prev' | 'next') => {
         if (e === "prev") {
