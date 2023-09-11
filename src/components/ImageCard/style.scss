@@ -49,7 +49,11 @@
 
         p {
             color: #fff;
-            @include paragraph(regular, 14)
+            @include paragraph(regular, 14);
+            text-decoration: none;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
 }

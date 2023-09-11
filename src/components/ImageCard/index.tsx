@@ -17,7 +17,7 @@ export default function ImageCard(props: ImageCardProps) {
             </div>
             <div className="dua-imageCard__description">
                 <h2>Evento: {props.evento}</h2>
-                <p>Data: {format(parseISO(props.data!), "EEEE', 'dd' de 'MMMM 'de' Y", { locale: ptBR })}</p>
+                <p title={`Data: ${format(parseISO(props.data!), "EEEE', 'dd' de 'MMMM 'de' Y", { locale: ptBR })}`} >Data: {format(parseISO(props.data!), "EEEE', 'dd' de 'MMMM 'de' Y", { locale: ptBR })}</p>
             </div>
         </div>
     )

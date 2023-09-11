@@ -94,6 +94,17 @@
                 }
             }
 
+            p {
+                position: absolute;
+                top: -30px;
+                color: #000;
+                @include paragraph(semibold, 18);
+                text-decoration: none;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
         }
 
         span {

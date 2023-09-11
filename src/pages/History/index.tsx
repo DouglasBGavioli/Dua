@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from "react"
+import { compareAsc, parseISO } from "date-fns"
+
 import "./style.min.css"
+
 import ImageCard from "../../components/ImageCard";
-import { useLoader, useMidias } from "../../contexts";
+import { useMidias } from "../../contexts";
 import { Modal } from "../../components/Modal";
 import { TitlePage } from "../../components/TitlePage";
 
@@ -42,12 +45,20 @@ export default function History() {
         }
     }, [galleryPosition, modalGallery?.url.length]);
 
+    const galleryOrdenada = gallery?.sort((a, b) => {
+        const dataA = parseISO(a.data);
+        const dataB = parseISO(b.data);
+
+        return compareAsc(dataB, dataA);
+    });
+
+
     return (
         <div className="dua-history">
             <TitlePage title="Nossa história" subtitle="Galeria de jogos" />
             <h2>Um pouco da nossa história contada através de galerias</h2>
             <div className="dua-history__image">
-                {gallery?.map((item, index) => (
+                {galleryOrdenada?.map((item, index) => (
                     <ImageCard url={item.url?.[0]} data={item.data} evento={item.description} key={index} onClick={() => handleModal(item)} />
                 ))}
             </div>
@@ -56,7 +67,7 @@ export default function History() {
                     <div className="dua-history__imageModal__chevron" onClick={() => changeImage("prev")}>
                         <img src="/chevron-left.png" alt="Seta esquerda" />
                     </div>
-
+                    <p>{modalGallery?.description}</p>
                     <img src={modalGallery?.url[galleryPosition - 1]} alt="" />
 
                     <div className="dua-history__imageModal__chevron" onClick={() => changeImage("next")}>
