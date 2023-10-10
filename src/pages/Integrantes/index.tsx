@@ -68,7 +68,7 @@ export default function Integrantes() {
                                     </div>
                                     <div className="dua-members__cards__content-card-descriptions-xp">
                                         <p>XP</p>
-                                        <ProgressBar percentage={member.xp} />
+                                        <ProgressBar percentage={member.level === 4 ? 100 : member.xp} />
                                     </div>
                                 </div>
                             </div>
