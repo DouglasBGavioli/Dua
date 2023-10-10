@@ -78,14 +78,25 @@
                             display: flex;
                             flex-direction: column;
                             gap: 0.5rem;
+                            cursor: default;
 
                             h2 {
                                 @include paragraph(regular, 16);
                             }
 
                             p {
-                                @include paragraph(regular, 14)
+                                @include paragraph(regular, 14);
                             }
+
+                            a {
+                                @include paragraph(regular, 14);
+                                text-decoration: none;
+
+                                &:hover {
+                                    @include paragraph(semibold, 14);
+                                }
+                            }
+
                         }
 
                         &-imgLvl {

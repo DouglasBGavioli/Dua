@@ -58,7 +58,7 @@ export default function Integrantes() {
                                     <div className="dua-members__cards__content-card-descriptions-text">
                                         <div className="dua-members__cards__content-card-descriptions-text-content">
                                             <h2>{member.name}</h2>
-                                            <p>{member.insta}</p>
+                                            <a href={`https://www.instagram.com/${member.insta.replace("@", "")}/`} target="_blank" rel="noreferrer">{member.insta}</a>
                                         </div>
                                         <div className="dua-members__cards__content-card-descriptions-text-imgLvl">
                                             <img src={ArrayLevel[member?.level]?.img} alt={ArrayLevel[member.level]?.lvl} title={ArrayLevel[member.level]?.lvl} />
