@@ -79,6 +79,12 @@
                     max-height: 75%;
                     max-width: 30%;
                     opacity: 0;
+
+                    &:active,
+                    &:focus {
+                        background-color: transparent;
+                        background: none;
+                    }
                 }
             }
 
