@@ -1,9 +1,12 @@
-import { ChangeEvent, useCallback, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom"
 import "./style.min.css"
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../config/firebaseClient"
-import { useLoader } from "../../contexts";
+import { useLoader, useMidias, useStore } from "../../contexts";
 import { Alert } from "../../components/Alert";
+import { compareAsc, parseISO } from "date-fns"
+import ImageCard from "../../components/ImageCard";
 
 interface FormData {
     email: string,
@@ -24,10 +27,20 @@ const INITIAL_DATA = {
 export default function Home() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const { handleLoader } = useLoader()
+    const { getStore, store } = useStore()
+    const { getMidias, gallery } = useMidias()
+    const navigate = useNavigate()
+
 
     const [data, setData] = useState(INITIAL_DATA)
     const [alert, setAlert] = useState("")
     const [alertMessage, setAlertMessage] = useState("")
+
+    useEffect(() => {
+        getMidias()
+        getStore()
+    }, [getMidias, getStore])
+
 
     const handleData = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -61,7 +74,7 @@ export default function Home() {
         } finally {
             handleLoader(false)
         }
-    }, [data, alert])
+    }, [handleLoader, data])
 
     const scrollToSection = () => {
         sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -81,6 +94,19 @@ export default function Home() {
         setData({ ...data, "telefone": formattedNumber });
     };
 
+    const galleryOrdenada = gallery?.sort((a, b) => {
+        const dataA = parseISO(a.data);
+        const dataB = parseISO(b.data);
+
+        return compareAsc(dataB, dataA);
+    });
+
+    function formatCurrency(value: number): string {
+        return value.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        });
+    }
 
     return (
         <div className="dua-home">
@@ -109,6 +135,42 @@ export default function Home() {
                     </div>
                 </div>
                 <span>Fortis et adaptabilis, urutu est exemplar virtutis</span>
+            </div>
+
+            <div className="dua-home__news">
+                <div className="dua-home__news-title">
+                    <h2>Atividade recente no portal</h2>
+                </div>
+
+                <div className="dua-home__news-itens">
+                    <div className="dua-home__news-itens-item" onClick={() => navigate("/galery")}>
+                        <h2>Ultima galeria criada!</h2>
+                        {galleryOrdenada && galleryOrdenada[0] && (
+                            <ImageCard url={galleryOrdenada[0].url?.[0]} data={galleryOrdenada[0].data} evento={galleryOrdenada[0].description} />
+                        )}
+                    </div>
+
+                    <div className="dua-home__news-itens-item" onClick={() => navigate("/loja")}>
+                        <h2>Ultimo item anunciado!</h2>
+                        {store && store[0] && (
+
+                            <div className="dua-imageCard" >
+                                <div className="dua-imageCard__image">
+                                    <img src={store[store.length - 1].url?.[0]} alt="Imagem da nossa história" />
+                                </div>
+                                <div className="dua-imageCard__description">
+                                    <h2>{store[store.length - 1].text}</h2>
+                                    <p>{formatCurrency(Number(store[store.length - 1].value))}</p>
+                                </div>
+                            </div>
+
+
+                        )}
+
+                    </div>
+
+                </div>
+
             </div>
 
             <div className="dua-home__honor">
@@ -188,6 +250,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
             <div className="dua-home__contact">
                 {alert === "success" ?
                     (
