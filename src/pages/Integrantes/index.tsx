@@ -4,6 +4,7 @@ import { db } from "../../config/firebaseClient";
 import "./style.min.css"
 import { TitlePage } from "../../components/TitlePage";
 import ProgressBar from "../../components/ProgressBar";
+import { useMembers } from "../../contexts";
 
 
 const ArrayLevel = [
@@ -30,13 +31,8 @@ const ArrayLevel = [
 ]
 
 export default function Integrantes() {
-    const [members, setMembers] = useState<{ id: string; xp: number, name: string, insta: string, level: number, file: string }[]>([])
+    const { getMembers, members } = useMembers()
 
-    const getMembers = useCallback(async () => {
-        const querySnapshot = await getDocs(collection(db, "members"));
-        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as unknown as {}
-        setMembers(Object.values(data))
-    }, []);
     useEffect(() => {
         getMembers()
     }, [getMembers])

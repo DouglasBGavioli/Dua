@@ -13,22 +13,24 @@ import Loja from "./pages/Loja";
 function App() {
   return (
     <BrowserRouter>
-      <C.StoreProvider>
-        <C.MidiasProvider>
-          <C.LoaderProvider>
-            <Header2 />
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path={"/galery"} element={<History />} />
-              <Route path={"/integrantes"} element={<Integrantes />} />
-              <Route path={"/acervo"} element={<Acervo />} />
-              <Route path={"/loja"} element={<Loja />} />
-              <Route path={"/manutencao"} element={<Manutencao />} />
-            </Routes>
-            <Footer />
-          </C.LoaderProvider>
-        </C.MidiasProvider>
-      </C.StoreProvider>
+      <C.MembersProvider>
+        <C.StoreProvider>
+          <C.MidiasProvider>
+            <C.LoaderProvider>
+              <Header2 />
+              <Routes>
+                <Route index element={<Home />} />
+                <Route path={"/galery"} element={<History />} />
+                <Route path={"/integrantes"} element={<Integrantes />} />
+                <Route path={"/acervo"} element={<Acervo />} />
+                <Route path={"/loja"} element={<Loja />} />
+                <Route path={"/manutencao"} element={<Manutencao />} />
+              </Routes>
+              <Footer />
+            </C.LoaderProvider>
+          </C.MidiasProvider>
+        </C.StoreProvider>
+      </C.MembersProvider>
     </BrowserRouter>
   );
 }
