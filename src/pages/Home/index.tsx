@@ -163,10 +163,7 @@ export default function Home() {
                                     <p>{formatCurrency(Number(store[store.length - 1].value))}</p>
                                 </div>
                             </div>
-
-
                         )}
-
                     </div>
 
                 </div>

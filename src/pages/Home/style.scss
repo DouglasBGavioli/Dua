@@ -197,6 +197,11 @@
             flex-direction: row;
             gap: 4rem;
 
+            @media(max-width:780px) {
+                display: flex;
+                flex-direction: column;
+            }
+
             &-item {
                 display: flex;
                 flex-direction: column;
