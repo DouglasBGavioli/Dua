@@ -144,14 +144,14 @@ export default function Home() {
 
                 <div className="dua-home__news-itens">
                     <div className="dua-home__news-itens-item" onClick={() => navigate("/galery")}>
-                        <h2>Ultima galeria criada!</h2>
+                        <h2>Última galeria criada!</h2>
                         {galleryOrdenada && galleryOrdenada[0] && (
                             <ImageCard url={galleryOrdenada[0].url?.[0]} data={galleryOrdenada[0].data} evento={galleryOrdenada[0].description} />
                         )}
                     </div>
 
                     <div className="dua-home__news-itens-item" onClick={() => navigate("/loja")}>
-                        <h2>Ultimo item anunciado!</h2>
+                        <h2>Último item anunciado!</h2>
                         {store && store[0] && (
 
                             <div className="dua-imageCard" >
