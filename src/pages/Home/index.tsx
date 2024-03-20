@@ -136,39 +136,46 @@ export default function Home() {
                 </div>
                 <span>Fortis et adaptabilis, urutu est exemplar virtutis</span>
             </div>
-
-            <div className="dua-home__news">
-                <div className="dua-home__news-title">
-                    <h2>Atividade recente no portal</h2>
-                </div>
-
-                <div className="dua-home__news-itens">
-                    <div className="dua-home__news-itens-item" onClick={() => navigate("/galery")}>
-                        <h2>Última galeria criada!</h2>
-                        {galleryOrdenada && galleryOrdenada[0] && (
-                            <ImageCard url={galleryOrdenada[0].url?.[0]} data={galleryOrdenada[0].data} evento={galleryOrdenada[0].description} />
-                        )}
+            {((galleryOrdenada?.length! > 0) || (store?.length! > 0)) &&
+                <div className="dua-home__news">
+                    <div className="dua-home__news-title">
+                        <h2>Atividade recente no portal</h2>
                     </div>
 
-                    <div className="dua-home__news-itens-item" onClick={() => navigate("/loja")}>
-                        <h2>Último item anunciado!</h2>
-                        {store && store[0] && (
+                    <div className="dua-home__news-itens">
 
-                            <div className="dua-imageCard" >
-                                <div className="dua-imageCard__image">
-                                    <img src={store[store.length - 1].url?.[0]} alt="Imagem da nossa história" />
-                                </div>
-                                <div className="dua-imageCard__description">
-                                    <h2>{store[store.length - 1].text}</h2>
-                                    <p>{formatCurrency(Number(store[store.length - 1].value))}</p>
-                                </div>
+                        {galleryOrdenada?.length! > 0 &&
+                            <div className="dua-home__news-itens-item" onClick={() => navigate("/galery")}>
+                                <h2>Última galeria criada!</h2>
+                                {galleryOrdenada && galleryOrdenada[0] && (
+                                    <ImageCard url={galleryOrdenada[0].url?.[0]} data={galleryOrdenada[0].data} evento={galleryOrdenada[0].description} />
+                                )}
                             </div>
-                        )}
+                        }
+
+                        {store?.length! > 0 &&
+                            (
+                                <div className="dua-home__news-itens-item" onClick={() => navigate("/loja")}>
+                                    <h2>Último item anunciado!</h2>
+                                    {store && store[0] && (
+
+                                        <div className="dua-imageCard" >
+                                            <div className="dua-imageCard__image">
+                                                <img src={store[store.length - 1].url?.[0]} alt="Imagem da nossa história" />
+                                            </div>
+                                            <div className="dua-imageCard__description">
+                                                <h2>{store[store.length - 1].text}</h2>
+                                                <p>{formatCurrency(Number(store[store.length - 1].value))}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        }
                     </div>
 
                 </div>
-
-            </div>
+            }
 
             <div className="dua-home__honor">
                 <div className="dua-home__honor-title">
