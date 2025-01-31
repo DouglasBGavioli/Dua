@@ -54,7 +54,7 @@ export default function Home() {
     const sendData = useCallback(async () => {
         handleLoader(true)
         try {
-            const docRef = await addDoc(collection(db, "contatos"), {
+            await addDoc(collection(db, "contatos"), {
                 ...data
             });
             setData(INITIAL_DATA)
@@ -63,7 +63,7 @@ export default function Home() {
             setTimeout(() => {
                 setAlert("")
             }, 2000);
-            console.log("Document written with ID: ", docRef.id);
+
         } catch (e) {
             console.error("Error adding document: ", e);
             setAlert("error")
@@ -148,7 +148,7 @@ export default function Home() {
                             <div className="dua-home__news-itens-item" onClick={() => navigate("/galery")}>
                                 <h2>Última galeria criada!</h2>
                                 {galleryOrdenada && galleryOrdenada[0] && (
-                                    <ImageCard url={galleryOrdenada[0].url?.[0]} data={galleryOrdenada[0].data} evento={galleryOrdenada[0].description} />
+                                    <ImageCard url={galleryOrdenada[0]?.url?.[0] || galleryOrdenada[0]?.images[0]?.url} data={galleryOrdenada[0].data} evento={galleryOrdenada[0].description} />
                                 )}
                             </div>
                         }

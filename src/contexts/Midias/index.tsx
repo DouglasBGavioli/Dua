@@ -6,6 +6,7 @@ interface Gallery {
     id: string,
     data: string,
     description: string,
+    images: { url: string, order: number }[]
     url: string[]
 }
 

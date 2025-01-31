@@ -13,6 +13,7 @@ interface Gallery {
     id: string,
     data: string,
     description: string,
+    images: { url: string, order: number }[]
     url: string[]
 }
 
@@ -35,15 +36,20 @@ export default function History() {
         }
     }, [isModalOpen])
 
-    const changeImage = useCallback((e: 'prev' | 'next') => {
-        if (e === "prev") {
-            if (galleryPosition !== 1) {
-                setGalleryPosition(galleryPosition - 1);
+    const changeImage = useCallback(
+        (e: 'prev' | 'next') => {
+            const totalImages = modalGallery?.images?.length || modalGallery?.url?.length || 0;
+
+            if (e === "prev") {
+                if (galleryPosition > 1) {
+                    setGalleryPosition(galleryPosition - 1);
+                }
+            } else if (galleryPosition < totalImages) {
+                setGalleryPosition(galleryPosition + 1);
             }
-        } else if (galleryPosition < modalGallery?.url.length!) {
-            setGalleryPosition(galleryPosition + 1);
-        }
-    }, [galleryPosition, modalGallery?.url.length]);
+        },
+        [galleryPosition, modalGallery]
+    );
 
     const galleryOrdenada = gallery?.sort((a, b) => {
         const dataA = parseISO(a.data);
@@ -59,7 +65,10 @@ export default function History() {
             <h2>Um pouco da nossa história contada através de galerias</h2>
             <div className="dua-history__image">
                 {galleryOrdenada?.map((item, index) => (
-                    <ImageCard url={item.url?.[0]} data={item.data} evento={item.description} key={index} onClick={() => handleModal(item)} />
+                    <ImageCard url={
+                        item.images
+                            ?.sort((a, b) => a.order - b.order)[0]?.url || item.url?.[0]
+                    } data={item.data} evento={item.description} key={index} onClick={() => handleModal(item)} />
                 ))}
             </div>
             <Modal isOpen={isModalOpen} className="dua-history__modal" onRequestClose={() => setIsModalOpen(false)}>
@@ -68,13 +77,16 @@ export default function History() {
                         <img src="/chevron-left.png" alt="Seta esquerda" />
                     </div>
                     <p>{modalGallery?.description}</p>
-                    <img src={modalGallery?.url[galleryPosition - 1]} alt="" />
+                    <img
+                        src={modalGallery?.images?.[galleryPosition - 1]?.url || modalGallery?.url?.[galleryPosition - 1]}
+                        alt="Imagem da galeria"
+                    />
 
                     <div className="dua-history__imageModal__chevron" onClick={() => changeImage("next")}>
                         <img src="/chevron-right.png" alt="Seta direita" />
                     </div>
                 </div>
-                <span>{galleryPosition}/{modalGallery?.url.length}</span>
+                <span>{galleryPosition}/{(modalGallery?.url?.length || modalGallery?.images?.length)}</span>
             </Modal>
         </div>
     )
