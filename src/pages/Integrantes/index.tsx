@@ -28,6 +28,10 @@ const ArrayLevel = [
         img: "./capitao.png",
         lvl: "CAP"
     },
+        {
+        img: "./medalha-de-honra.png",
+        lvl: "KIA",
+    },
 ]
 
 export default function Integrantes() {
